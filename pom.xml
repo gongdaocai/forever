@@ -21,9 +21,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven-source.version>2.2.1</maven-source.version>
+        <maven-compiler.version>3.7.0</maven-compiler.version>
+        <maven.test.skip>true</maven.test.skip>
+        <hutool-version>4.1.21</hutool-version>
+        <lombok-version>1.18.4</lombok-version>
+        <junit-version>4.11</junit-version>
+        <fastjson-version>1.2.44</fastjson-version>
+        <google-api-version>1.28.0</google-api-version>
+        <guava-version>27.1-jre</guava-version>
+        <alipay-sdk-version>3.7.4.ALL</alipay-sdk-version>
+
     </properties>
 
     <dependencies>
+        <!--web springMvc-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -63,7 +78,42 @@
             <artifactId>pagehelper</artifactId>
             <version>4.1.1</version>
         </dependency>
+        <!--安全-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
+        <!--builder创建模式-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok-version}</version>
+        </dependency>
+        <!--http-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+            <version>${hutool-version}</version>
+        </dependency>
+        <!--fastJson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson-version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>${google-api-version}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>${alipay-sdk-version}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!--开发热部署-->
         <dependency>
