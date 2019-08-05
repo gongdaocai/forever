@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -28,18 +27,7 @@ public class QinagGouService {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     public String start(String mid, Integer count) throws JsonProcessingException {
-//        Map<String, Object> skuById = qiangGouDao.getSkuById(mid);
-//        if (Integer.valueOf((skuById.get("stock").toString())) >= count) {
-//            Integer integer = qiangGouDao.updateStockBySkuId(mid, count);
-//            if (integer == 1) {
-//                return "抢购成功";
-//            } else {
-//                return "已经抢购完了,下次再来";
-//            }
-//
-//        } else {
-//            return "已经抢购完了,下次再来";
-//        }
+
         if (Integer.valueOf(redisTemplate.opsForValue().get(mid).toString()) >= count) {
 
             Long increment = redisTemplate.opsForValue().increment(mid, -count);
@@ -65,10 +53,5 @@ public class QinagGouService {
     public String addQiangGou() {
         redisTemplate.opsForValue().set("316952840381661184", 4500);
         return "添加抢购成功";
-    }
-
-    @Transactional(rollbackFor = Exception.class)
-    public void insetOrder(String str) {
-        qiangGouDao.insertOrder(Long.parseLong(str));
     }
 }
