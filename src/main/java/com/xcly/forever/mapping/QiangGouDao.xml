@@ -13,6 +13,22 @@
         update goods_sku
         set stock=stock - #{count}
         where id = #{id}
-         <!-- and stock - #{count} >= 0;-->
+        <!-- and stock - #{count} >= 0;-->
     </update>
+    <select id="listByUserId" resultType="java.util.Map">
+        SELECT t1.*, (SELECT nick_name FROM user_info WHERE id = t1.`user_id`) userName
+
+        FROM user_account_change_detail t1
+        WHERE JSON_UNQUOTE(remark -> '$.customerName') = #{userId}
+           OR JSON_UNQUOTE(remark -> '$.orderNo') = #{userId}
+           OR JSON_UNQUOTE(remark -> '$.customerName') = #{userId}
+           OR JSON_UNQUOTE(remark -> '$.serviceProviderName') = #{userId}
+
+
+    </select>
+    <insert id="insertOrder">
+
+        INSERT INTO `order`(`count`)
+        VALUES (#{count});
+    </insert>
 </mapper>

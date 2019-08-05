@@ -20,7 +20,6 @@ public class QiangGouController {
     @GetMapping(value = "start")
     public Result start(@RequestParam(value = "count") Integer count, @RequestParam(value = "mid") String mid) {
         try {
-//            LOGGER.info("=====>>>>>抢购接口请求");
             return Result.createSuccess("success", qinagGouService.start(mid, count));
         } catch (Exception e) {
             LOGGER.error("<<====抢购失败 reason:{}", e);
